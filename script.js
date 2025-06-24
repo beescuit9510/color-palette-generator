@@ -1,5 +1,5 @@
 const generatorBtn = document.querySelector('.generate-btn')
-const colorsContainer = document.querySelector('.colors-container')
+const colorBoxes = document.querySelectorAll('.color-box')
 const colors = 5
 const hexGenerator = () => {
   return (
@@ -10,38 +10,33 @@ const hexGenerator = () => {
   )
 }
 
-const generatorColorNode = () => {
-  const colorNode = document.createElement('div')
-  const color = document.createElement('div')
-  const colorBottom = document.createElement('div')
-  const colorName = document.createElement('p')
-  const colorCopyBtn = document.createElement('button')
-  colorNode.classList.add('color-container')
-  color.classList.add('color')
-  colorBottom.classList.add('color-bottom')
-  colorName.classList.add('color-name')
-  colorCopyBtn.classList.add('color-copy-btn')
-
-  colorNode.appendChild(color)
-  colorNode.appendChild(colorBottom)
-  colorBottom.appendChild(colorName)
-  colorBottom.appendChild(colorCopyBtn)
-
-  const colorHaxValue = hexGenerator()
-  colorName.textContent = colorHaxValue
-  color.style.backgroundColor = colorHaxValue
-  colorCopyBtn.textContent = 'copy'
-  colorBottom.addEventListener('click', () =>
-    navigator.clipboard.writeText(colorHaxValue)
-  )
-
-  return colorNode
-}
 const displayColors = () => {
-  colorsContainer.innerHTML = ''
-
   Array.from({ length: colors }).forEach(() => {
-    colorsContainer.appendChild(generatorColorNode())
+    colorBoxes.forEach((node) => {
+      const hexValue = hexGenerator()
+      const copyHexValue = () => {
+        navigator.clipboard
+          .writeText(hexValue)
+          .then(() => {
+            const icon = node.querySelector('.fa-copy')
+            icon.classList.remove('fa-copy')
+            icon.classList.add('fa-check')
+            setTimeout(
+              () => {
+                icon.classList.remove('fa-check')
+                icon.classList.add('fa-copy')
+              },
+              500,
+              icon
+            )
+          })
+          .catch(console.log)
+      }
+
+      node.querySelector('.color').style.backgroundColor = hexValue
+      node.querySelector('.color-name').textContent = hexValue
+      node.querySelector('.copy-btn').addEventListener('click', copyHexValue)
+    })
   })
 }
 

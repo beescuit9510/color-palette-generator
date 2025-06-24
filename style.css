@@ -5,7 +5,7 @@
 }
 
 :root {
-  --main-color: rgb(164, 178, 249);
+  --main-color: #a4b2f9;
   --main-color2: rgb(94, 119, 244);
 }
 
@@ -18,34 +18,28 @@ body {
   min-height: 100vh;
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+}
+
 .main-container {
   background-color: white;
   padding: 2rem;
+  margin: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.2);
+  width: 100%;
+  max-width: 800px;
 }
 
-.title-container {
-  display: flex;
-  justify-content: center;
-}
 .title {
   font-weight: bold;
   font-size: 1.7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.title-bottom-line {
-  display: block;
-  width: 90%;
-  border-bottom: 0.2rem solid var(--main-color);
-}
-
-.flex {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .generate-btn {
@@ -56,49 +50,42 @@ body {
   padding-bottom: 0.6rem;
   border: 1px solid var(--main-color);
   border-radius: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .generate-btn:hover {
-  cursor: pointer;
   background-color: var(--main-color2);
 }
 
-.colors-container {
-  display: flex;
-  gap: 1rem;
-}
-
 .color-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.color-box {
   border-radius: 0.5rem;
-  box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.2);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.3);
+  overflow: hidden;
+  height: 135px;
 }
 .color {
+  height: 80%;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  background-color: teal;
-  width: 100%;
-  height: 100px;
 }
 
-.color-bottom {
+.color-info {
+  height: 20%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5rem;
 }
 
 .color-name {
   font-size: 0.8rem;
   font-weight: 500;
-  min-width: 3.5rem;
-}
-
-.color-copy-btn {
-  min-width: 2rem;
-  margin-left: 0.5rem;
-  border: none;
-  background-color: white;
-}
-.color-copy-btn:hover {
-  font-weight: bolder;
-  cursor: pointer;
 }
